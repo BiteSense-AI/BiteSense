@@ -44,7 +44,7 @@ def download_images(query, num_images):
                 img_data = requests.get(img_url)
                 img_data.raise_for_status()
                 img = Image.open(BytesIO(img_data.content))
-                img = img.convert('RGB')
+                img = img.convert("RGB")
                 img.save(os.path.join(output_dir, f"mosquito_bite_{downloaded + 1}.jpg"))
                 downloaded += 1
                 print(f"Downloaded image {downloaded}: {img_url}")

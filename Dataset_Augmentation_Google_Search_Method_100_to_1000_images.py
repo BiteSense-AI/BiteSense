@@ -14,10 +14,10 @@ datagen = ImageDataGenerator(
     shear_range=0.2,
     zoom_range=0.2,
     horizontal_flip=True,
-    fill_mode='nearest'
+    fill_mode="nearest"
 )
 
-image_files = [f for f in os.listdir(original_images_path) if f.endswith(('.png', '.jpg', '.jpeg'))]
+image_files = [f for f in os.listdir(original_images_path) if f.endswith((".png", ".jpg", ".jpeg"))]
 total_images_needed = 1000
 current_image_count = len(image_files)
 images_per_original = (total_images_needed // current_image_count) + 1
@@ -28,7 +28,7 @@ for image_file in image_files:
     img_array = img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
 
-    for i, batch in enumerate(datagen.flow(img_array, batch_size=1, save_to_dir=augmented_images_path, save_prefix='aug_', save_format='jpeg')):
+    for i, batch in enumerate(datagen.flow(img_array, batch_size=1, save_to_dir=augmented_images_path, save_prefix="aug_", save_format="jpeg")):
         if i >= images_per_original:
             break
 

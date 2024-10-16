@@ -13,7 +13,7 @@ def load_data(data_dir):
     labels = []
 
     for img_file in os.listdir(data_dir):
-        if img_file.endswith(('.png', '.jpg', '.jpeg')):
+        if img_file.endswith((".png", ".jpg", ".jpeg")):
             img_path = os.path.join(data_dir, img_file)
             img = load_img(img_path, target_size=(128, 128))
             img_array = img_to_array(img)
@@ -26,25 +26,25 @@ X, y = load_data(augmented_images_path)
 X = X / 255.0
 X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Define the CNN model
+# Define the CNN
 def create_model():
     model = Sequential()
-    model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(128, 128, 3)))
+    model.add(Conv2D(32, (3, 3), activation="relu", input_shape=(128, 128, 3)))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(Conv2D(64, (3, 3), activation="relu"))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(128, (3, 3), activation='relu'))
+    model.add(Conv2D(128, (3, 3), activation="relu"))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(128, activation="relu"))
     model.add(Dropout(0.5))
-    model.add(Dense(1, activation='sigmoid'))
+    model.add(Dense(1, activation="sigmoid"))
     return model
 
 model = create_model()
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
 model.fit(X_train, y_train, epochs=3, batch_size=32, validation_data=(X_val, y_val))
-model.save('mosquito_bite_classifier.keras')
+model.save("mosquito_bite_classifier.keras")
 
 def predict_mosquito_bite(image_path):
     img = load_img(image_path, target_size=(128, 128))
