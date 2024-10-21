@@ -73,7 +73,7 @@ model.compile(optimizer=Adam(learning_rate=0.001), loss="categorical_crossentrop
 
 # Set up checkpoints, early stopping, and learning rate adjustment
 checkpoint = ModelCheckpoint("best_model.keras", monitor="val_accuracy", save_best_only=True, mode="max")
-# early_stopping = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
+early_stopping = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
 reduce_lr = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=3, min_lr=1e-6, verbose=1)
 
 # Train the model
