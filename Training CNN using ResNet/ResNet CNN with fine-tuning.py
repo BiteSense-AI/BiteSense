@@ -36,7 +36,7 @@ train_data = train_datagen.flow_from_directory(
 # Load validation data
 val_data = train_datagen.flow_from_directory(
     r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Same as training
-    target_size=(img_size, img_size),  # Resizing images to 224x224
+    target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
     subset="validation"
@@ -47,7 +47,7 @@ test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 test_data = test_datagen.flow_from_directory(
     r"C:\Users\Saaki\Downloads\BiteSense-Data\test",  # Path to test dataset
-    target_size=(img_size, img_size),  # Resizing test images to 224x224
+    target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
     shuffle=False  # Keep shuffle=False for testing
@@ -64,7 +64,7 @@ predictions = Dense(num_classes, activation="softmax")(x)  # Output layer with s
 
 model = Model(inputs=base_model.input, outputs=predictions)
 
-# Freeze the layers of ResNet50 initially
+# Freeze the layers of ResNet50
 for layer in base_model.layers:
     layer.trainable = False
 
@@ -82,19 +82,19 @@ history = model.fit(
     steps_per_epoch=train_data.samples // batch_size,
     validation_data=val_data,
     validation_steps=val_data.samples // batch_size,
-    epochs=10,  # You can increase this depending on the performance
+    epochs=10,
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
 
 # Unfreeze the last few layers of the base model for fine-tuning
-for layer in base_model.layers[-10:]:  # Unfreeze the last 10 layers
+for layer in base_model.layers[-10:]:
     layer.trainable = True
 
 # Recompile the model after unfreezing layers
 model.compile(optimizer=Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Continue training the model for more epochs
-fine_tune_epochs = 10  # Adjust as necessary
+fine_tune_epochs = 10
 history_fine_tune = model.fit(
     train_data,
     steps_per_epoch=train_data.samples // batch_size,
@@ -104,7 +104,7 @@ history_fine_tune = model.fit(
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
 
-# Evaluate the model on the test data
+# Evaluate model on test data
 test_loss, test_accuracy = model.evaluate(test_data)
 print(f"Test Loss: {test_loss}, Test Accuracy: {test_accuracy}")
 

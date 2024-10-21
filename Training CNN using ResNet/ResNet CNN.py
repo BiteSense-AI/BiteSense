@@ -27,7 +27,7 @@ train_datagen = ImageDataGenerator(
 # Load training data
 train_data = train_datagen.flow_from_directory(
     r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Change to proper path
-    target_size=(img_size, img_size),  # Resizing images to 224x224
+    target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
     subset="training"
@@ -36,7 +36,7 @@ train_data = train_datagen.flow_from_directory(
 # Load validation data
 val_data = train_datagen.flow_from_directory(
     r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Same as training
-    target_size=(img_size, img_size),  # Resizing images to 224x224
+    target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
     subset="validation"
@@ -47,7 +47,7 @@ test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 test_data = test_datagen.flow_from_directory(
     r"C:\Users\Saaki\Downloads\BiteSense-Data\test",  # Path to test dataset
-    target_size=(img_size, img_size),  # Resizing test images to 224x224
+    target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
     shuffle=False  # Keep shuffle=False for testing
@@ -81,11 +81,11 @@ history = model.fit(
     steps_per_epoch=train_data.samples // batch_size,
     validation_data=val_data,
     validation_steps=val_data.samples // batch_size,
-    epochs=20,  # You can increase this depending on the performance
+    epochs=20,
     callbacks=[checkpoint, early_stopping]
 )
 
-# Evaluate the model on the test data
+# Evaluate model on test data
 test_loss, test_accuracy = model.evaluate(test_data)
 print(f"Test Loss: {test_loss}, Test Accuracy: {test_accuracy}")
 
