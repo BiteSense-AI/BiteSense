@@ -82,7 +82,7 @@ history = model.fit(
     steps_per_epoch=train_data.samples // batch_size,
     validation_data=val_data,
     validation_steps=val_data.samples // batch_size,
-    epochs=10,
+    epochs=15,
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
 
@@ -94,7 +94,7 @@ for layer in base_model.layers[-10:]:
 model.compile(optimizer=Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Continue training the model for more epochs
-fine_tune_epochs = 10
+fine_tune_epochs = 15
 history_fine_tune = model.fit(
     train_data,
     steps_per_epoch=train_data.samples // batch_size,
