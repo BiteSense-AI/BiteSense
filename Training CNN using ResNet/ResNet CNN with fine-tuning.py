@@ -71,6 +71,10 @@ for layer in base_model.layers:
 # Compile model
 model.compile(optimizer=Adam(learning_rate=0.001), loss="categorical_crossentropy", metrics=["accuracy"])
 
+# Calculate steps_per_epoch and validation_steps
+steps_per_epoch = train_data.samples // batch_size
+validation_steps = val_data.samples // batch_size
+
 # Set up checkpoints, early stopping, and learning rate adjustment
 checkpoint = ModelCheckpoint("best_model.keras", monitor="val_accuracy", save_best_only=True, mode="max")
 early_stopping = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
@@ -79,10 +83,10 @@ reduce_lr = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=3, min_lr
 # Train the model
 history = model.fit(
     train_data,
-    steps_per_epoch=train_data.samples // batch_size,
+    steps_per_epoch=steps_per_epoch,
     validation_data=val_data,
-    validation_steps=val_data.samples // batch_size,
-    epochs=15,
+    validation_steps=validation_steps,
+    epochs=30,
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
 
@@ -94,12 +98,12 @@ for layer in base_model.layers[-10:]:
 model.compile(optimizer=Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Continue training the model for more epochs
-fine_tune_epochs = 15
+fine_tune_epochs = 30
 history_fine_tune = model.fit(
     train_data,
-    steps_per_epoch=train_data.samples // batch_size,
+    steps_per_epoch=steps_per_epoch,
     validation_data=val_data,
-    validation_steps=val_data.samples // batch_size,
+    validation_steps=validation_steps,
     epochs=fine_tune_epochs,
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
