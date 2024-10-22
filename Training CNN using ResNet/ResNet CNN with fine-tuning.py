@@ -26,7 +26,7 @@ train_datagen = ImageDataGenerator(
 
 # Load training data
 train_data = train_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Change to proper path
+    r"C:\Users\infor\Downloads\BiteSense-Data\train",  # Change to proper path
     target_size=(img_size, img_size),  # Resizing images to 224x224
     batch_size=batch_size,
     class_mode="categorical",
@@ -35,7 +35,7 @@ train_data = train_datagen.flow_from_directory(
 
 # Load validation data
 val_data = train_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Same as training
+    r"C:\Users\infor\Downloads\BiteSense-Data\train",  # Same as training
     target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
@@ -46,7 +46,7 @@ val_data = train_datagen.flow_from_directory(
 test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 test_data = test_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\test",  # Path to test dataset
+    r"C:\Users\infor\Downloads\BiteSense-Data\test",  # Path to test dataset
     target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
@@ -77,7 +77,6 @@ validation_steps = val_data.samples // batch_size
 
 # Set up checkpoints, early stopping, and learning rate adjustment
 checkpoint = ModelCheckpoint("best_model.keras", monitor="val_accuracy", save_best_only=True, mode="max")
-early_stopping = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
 reduce_lr = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=3, min_lr=1e-6, verbose=1)
 
 # Train the model
@@ -86,8 +85,8 @@ history = model.fit(
     steps_per_epoch=steps_per_epoch,
     validation_data=val_data,
     validation_steps=validation_steps,
-    epochs=30,
-    callbacks=[checkpoint, early_stopping, reduce_lr]
+    epochs=50,
+    callbacks=[checkpoint, reduce_lr]
 )
 
 # Unfreeze the last few layers of the base model for fine-tuning
@@ -97,16 +96,6 @@ for layer in base_model.layers[-10:]:
 # Recompile the model after unfreezing layers
 model.compile(optimizer=Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
 
-# Continue training the model for more epochs
-fine_tune_epochs = 30
-history_fine_tune = model.fit(
-    train_data,
-    steps_per_epoch=steps_per_epoch,
-    validation_data=val_data,
-    validation_steps=validation_steps,
-    epochs=fine_tune_epochs,
-    callbacks=[checkpoint, early_stopping, reduce_lr]
-)
 
 # Evaluate model on test data
 test_loss, test_accuracy = model.evaluate(test_data)
