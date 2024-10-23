@@ -26,7 +26,7 @@ train_datagen = ImageDataGenerator(
 
 # Load training data
 train_data = train_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Change to proper path
+    r"..\BiteSense-Data\train",  # Change to proper path
     target_size=(img_size, img_size),  # Resizing images to 224x224
     batch_size=batch_size,
     class_mode="categorical",
@@ -35,7 +35,7 @@ train_data = train_datagen.flow_from_directory(
 
 # Load validation data
 val_data = train_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\train",  # Same as training
+    r"..\BiteSense-Data\train",  # Same as training
     target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
@@ -46,7 +46,7 @@ val_data = train_datagen.flow_from_directory(
 test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 test_data = test_datagen.flow_from_directory(
-    r"C:\Users\Saaki\Downloads\BiteSense-Data\test",  # Path to test dataset
+    r"..\BiteSense-Data\test",  # Path to test dataset
     target_size=(img_size, img_size),
     batch_size=batch_size,
     class_mode="categorical",
@@ -82,19 +82,15 @@ history = model.fit(
     steps_per_epoch=train_data.samples // batch_size,
     validation_data=val_data,
     validation_steps=val_data.samples // batch_size,
-    epochs=15,
+    epochs=25,
     callbacks=[checkpoint, early_stopping, reduce_lr]
 )
-
-# Unfreeze the last few layers of the base model for fine-tuning
-for layer in base_model.layers[-10:]:
-    layer.trainable = True
 
 # Recompile the model after unfreezing layers
 model.compile(optimizer=Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Continue training the model for more epochs
-fine_tune_epochs = 15
+fine_tune_epochs = 25
 history_fine_tune = model.fit(
     train_data,
     steps_per_epoch=train_data.samples // batch_size,

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>lesson</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="camera"><video autoplay></video></div>
+    <canvas id="c" width="224" height="224"></canvas>
+    <input type="file" accept="image/*" id="f"/>
+    <input type="submit" id="upload" capture="user">
+    <script src="https://unpkg.com/keras-js"></script>
+    <script src="https://raw.githubusercontent.com/scijs/ndarray/refs/heads/master/ndarray.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/stdlib-js/ndarray@esm/index.mjs'"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
