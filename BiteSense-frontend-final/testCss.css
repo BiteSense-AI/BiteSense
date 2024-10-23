@@ -1,0 +1,21 @@
+#drop_file_zone {
+    border: 2px dashed #007BFF; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside the drop zone */
+    text-align: center; /* Center the text */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+#drop_file_zone.dragging {
+    background-color: #E0E7FF; /* Light blue background when dragging */
+}
+
+#drag_upload_file p {
+    margin: 5px 0; /* Margin for the text inside */
+    font-size: 16px; /* Font size for the text */
+    color: #333; /* Text color */
+}
+
+input[type="file"] {
+    display: none; /* Hide the file input */
+}

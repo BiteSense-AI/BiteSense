@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>BiteSense App</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="assets/img/logo1.png" rel="icon">
+    <link href="assets/img/logo1.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        #drop_file_zone {
+            border: 2px dashed #1e1b1b; /* Border style */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding inside the drop zone */
+            text-align: center; /* Center the text */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+            margin-top: 20px; /* Margin at the top */
+        }
+
+        #drop_file_zone.dragging {
+            background-color: #E0E7FF; /* Light blue background when dragging */
+        }
+
+        #drag_upload_file p {
+            margin: 5px 0; /* Margin for the text inside */
+            font-size: 16px; /* Font size for the text */
+            color: #333; /* Text color */
+        }
+
+        input[type="file"] {
+            display: none; /* Hide the file input */
+        }
+    </style>
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header sticky-top" style="border-bottom: 4px solid
+color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
+
+
+    <div class="branding d-flex align-items-center">
+
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 class="sitename" style="margin-right: 10px;">BiteSense</h1>
+                <img src="assets/img/logo1.png" alt="BiteSense Logo" class="logo-image">
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html">Home<br></a></li>
+                    <li><a class="active">Diagnose Now!</a></li>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <a class="cta-btn d-none d-sm-block" href="#appointment">Log In</a>
+        </div>
+    </div>
+</header>
+<section id="about" class="about section">
+    <div class="container">
+        <div class="row gy-4 gx-5">
+            <div data-aos="fade-up" data-aos-delay="100" class="aos-init aos-animate">
+                <center>
+                    <h2 style="line-height:1.6; font-size: 47px;"></h2>
+                    <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+                        <h2>Diagnostic Results</h2>
+                    </div>
+                </center>
+            </div>
+            <br>
+
+            <!-- Ensure both of these columns are children of the 'row' div -->
+            <div class="col-lg-6 position-relative align-self-start aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                <h2>Your uploaded image:</h2>
+                <br>
+                <img id="uploadedImage" src=" " alt="Uploaded Bug Bite Image" style="max-width: 100%; height: auto;">
+                <!--backend here up above-->
+            </div>
+
+            <div class="col-lg-6 content aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <h2>Prediction Matrix:</h2>
+                <br>
+                <p id="diagnosisResults">Loading...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="doctors" class="doctors section">
+            <!-- Section Title -->
+
+    </section>
+
+
+    <script>
+        // Simulating processing the uploaded file
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file'); // Assuming the uploaded file name is passed as a URL parameter
+        const imageUrl = `assets/uploads/${fileName}`; // Path to the uploaded image
+
+        document.getElementById('uploadedImage').src = imageUrl;
+
+        // Simulated diagnosis results based on the uploaded image
+        const diagnoses = {
+            "mosquito": "This bite is likely from a mosquito. It's usually itchy and may cause swelling.",
+            "tick": "This bite is likely from a tick. Be sure to check for any remaining parts and watch for symptoms of Lyme disease.",
+            "bed-bug": "This bite is likely from a bed bug. It often appears as a small red bump and may be itchy.",
+            "ant": "This bite is likely from an ant. It can cause irritation and allergic reactions in some individuals.",
+            "flea": "This bite is likely from a flea. It often results in intense itching and red bumps."
+        };
+
+        // Simulate a diagnosis based on the uploaded image
+        const randomDiagnosis = Object.values(diagnoses)[Math.floor(Math.random() * Object.keys(diagnoses).length)];
+        document.getElementById('diagnosisResults').textContent = randomDiagnosis;
+    </script>
+
+
+
+
+
+
+<footer id="footer" class="footer light-background">
+    <div class="container copyright text-center mt-4" style="border: 0px; padding: 0px; padding-top: 5px; padding-bottom: 30px; line-height: 2;">
+        <h1 class="sitename" style="font-size: 28px;">BiteSense</h1>
+        <p><i>A novel way to diagnosing bug bites on the go using AI.</i></p>
+        <p>© <span>Copyright</span><strong class="px-1 sitename">Saaketh B, Sohum M, Sonit S, and Abhilash P</strong><span>All Rights Reserved</span></p>
+    </div>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
