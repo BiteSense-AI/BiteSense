@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>BiteSense App</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="assets/img/logo1.png" rel="icon">
+    <link href="assets/img/logo1.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        #drop_file_zone {
+            border: 2px dashed #1e1b1b; /* Border style */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding inside the drop zone */
+            text-align: center; /* Center the text */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+            margin-top: 20px; /* Margin at the top */
+        }
+
+        #drop_file_zone.dragging {
+            background-color: #E0E7FF; /* Light blue background when dragging */
+        }
+
+        #drag_upload_file p {
+            margin: 5px 0; /* Margin for the text inside */
+            font-size: 16px; /* Font size for the text */
+            color: #333; /* Text color */
+        }
+
+        input[type="file"] {
+            display: none; /* Hide the file input */
+        }
+    </style>
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header sticky-top" style="border-bottom: 4px solid
+color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
+
+
+    <div class="branding d-flex align-items-center">
+
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 class="sitename" style="margin-right: 10px;">BiteSense</h1>
+                <img src="assets/img/logo1.png" alt="BiteSense Logo" class="logo-image">
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html">Home<br></a></li>
+                    <li><a class="active">Diagnose Now!</a></li>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <a class="cta-btn d-none d-sm-block" href="#appointment">Log In</a>
+        </div>
+    </div>
+</header>
+<section id="about" class="about section">
+    <div class="container">
+        <div class="row gy-4 gx-5">
+            <div data-aos="fade-up" data-aos-delay="100" class="aos-init aos-animate">
+                <center>
+                    <h2 style="line-height:1.6; font-size: 47px;"></h2>
+                    <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+                        <h2 class="">Diagnostic Results</h2>
+                    </div>
+                </center>
+            </div>
+            <br>
+
+            <!-- New flexbox container for text and image -->
+            <div class="d-flex align-items-center justify-content-between" style="display: flex; flex-direction: row; gap: 20px;">
+
+                <!-- Left section with text -->
+                <div class="text-section" style="flex: 1;">
+                    <h2>Your uploaded image:</h2>
+                    <br>
+                    <p id="diagnosisResults">This bite is likely from a tick. Be sure to check for any remaining parts and watch for symptoms of Lyme disease.</p>
+                </div>
+
+                <!-- Right section with image -->
+                <div class="image-section" style="flex: 1; text-align: right;">
+                    <img id="uploadedImage" src="assets/img/ticksimage77.jpg" alt="Uploaded Bug Bite Image" style="max-width: 75%; height: auto;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="about section">
+    <div class="container">
+        <div class="row gy-4 gx-5">
+            <div data-aos="fade-up" data-aos-delay="100" class="aos-init aos-animate"><center><h2 style="line-height:1.6; font-size: 47px;">Your results show you got most likely got bit by a Tick!</h2></center></div>
+            <br>
+            <div class="col-lg-6 position-relative align-self-start aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="line-height:28px;">
+                <h3>What You Should Know About Tick Bites</h3>
+
+                <p>Discovering a tick bite can be alarming, especially with the risk of tick-borne diseases like Lyme disease, ehrlichiosis, and Rocky Mountain spotted fever. It’s important to act quickly and understand the type of tick that bit you. To help you identify the tick and assess potential risks, we’ve provided an interactive map displaying different tick species and the regions where they are commonly found.</p>
+
+                <p>Ticks are small, but they can transmit serious diseases. Depending on the type of tick, the symptoms of a bite may vary. Some common signs to watch for include:</p>
+
+                <ul>
+                    <li>Redness or a rash around the bite area</li>
+                    <li>Fever, chills, or muscle aches</li>
+                    <li>Fatigue or joint pain</li>
+                    <li>Swelling or tenderness near the bite</li>
+                </ul>
+
+                <p>If you notice any of these symptoms after a tick bite, it’s important to consult a healthcare provider as soon as possible.</p>
+
+                <h3>How to Use the Interactive Map</h3>
+
+                <p>To further explore tick activity in your area, and to get a sense of the types of ticks that may have bitten you, take a look at the interactive map we’ve provided below. This tool will help you identify the specific type of tick, its geographical range, and the diseases it might carry.</p>
+
+                <p>For a better view, be sure to click the “full screen” icon in the bottom right corner of the map, so you can explore the information in more detail. This interactive map is a valuable resource, providing insights into tick behavior across regions, and can guide your next steps in managing your tick bite.</p>
+
+            </div>
+            <div class="col-lg-6 content aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+
+                <!--tick bites information-->
+                <iframe class="embedContainer stretch" data-src="aHR0cHM6Ly9pZHBoLm1hcHMuYXJjZ2lzLmNvbS9hcHBzL01hcFNlcmllcy9pbmRleC5odG1sP2FwcGlkPTg2YzFlOTI0YzM0MTRlMjI4M2ZiYmU4Yjg5YzNiZGM1JmVtYmVk" data-unload="true" allowfullscreen="1" style="left: 0px; right: 0px;" src="https://idph.maps.arcgis.com/apps/MapSeries/index.html?appid=86c1e924c3414e2283fbbe8b89c3bdc5&amp;embed" width="760px" height="800px"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--chatbot-->
+<section id="doctors" class="doctors section"  >
+    <center>
+        <h2 style="line-height:1.6; font-size: 37px;">Talk to the ChatBot about your symptoms for a more tailored diagnosis</h2>
+        <p style="text-align: center; margin-right: 45px;: "><i> Note: Please check on the refresh button on the top right if you want to restart your conversation ↓</i></p>
+    <iframe
+            src="https://www.chatbase.co/chatbot-iframe/CrkGyeHqyIG65Z7tEezrM"
+            width="75%"
+            style="height: 100%; min-height: 700px"
+            frameborder="0"
+    ></iframe>
+    </center>
+</section>
+<script>
+    window.embeddedChatbotConfig = {
+        chatbotId: "CrkGyeHqyIG65Z7tEezrM",
+        domain: "www.chatbase.co"
+    }
+</script>
+
+
+
+
+    <script>
+        // Simulating processing the uploaded file
+        document.getElementById('diagnosisResults').textContent = "This bite is most likely from a tick. It’s important to carefully remove any remaining parts of the tick to prevent further irritation or infection. After removal, clean the bite area with antiseptic and monitor your health over the coming days. Watch for symptoms such as fever, chills, muscle aches, or a rash near the bite. These could be early signs of Lyme disease or other tick-borne illnesses like Rocky Mountain Spotted Fever or anaplasmosis."
+    </script>
+
+
+
+
+
+
+<footer id="footer" class="footer light-background">
+    <div class="container copyright text-center mt-4" style="border: 0px; padding: 0px; padding-top: 5px; padding-bottom: 30px; line-height: 2;">
+        <h1 class="sitename" style="font-size: 28px;">BiteSense</h1>
+        <p><i>A novel way to diagnose bug bites on the go using AI.</i></p>
+        <p>© <span>Copyright 2024.</span><span>All Rights Reserved.</span></p>
+        <strong class="px-1 sitename">Saaketh B, Sohum M, Sonit S, and Abhilash P</strong>
+    </div>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
