@@ -103,9 +103,9 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
     <div class="container">
         <div class="row gy-4 gx-5">
             <div class="col-lg-6 position-relative align-self-start aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="line-height:28px;">
-                <h2 style="">Your Uploaded Image: Tick Bite</h2>
+                <h2 id="result" style="">Your Uploaded Image: Tick Bite</h2>
                 <br>
-                <img  src="assets/img/tickPicture.jpg" class="img-fluid" alt="Tick Bite" style="border: 6px solid #0d4470; width: 90%; length=90%; border-radius: 10px;">
+                <img id="uploadedImage" src="assets/img/tickPicture.jpg" class="img-fluid" alt="Tick Bite" style="border: 6px solid #0d4470; width: 90%; length=90%; border-radius: 10px;">
             </div>
             <div class="col-lg-6 content aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" style="line-height:30px;">
                 <h2 style="text-align:center; style="line-height:25px;"">Immediate Actions</h2>
@@ -193,8 +193,11 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
 
 
     <script>
-        // Simulating processing the uploaded file
-        document.getElementById('diagnosisResults').textContent = "This bite is most likely from a tick. It’s important to carefully remove any remaining parts of the tick to prevent further irritation or infection. After removal, clean the bite area with antiseptic and monitor your health over the coming days. Watch for symptoms such as fever, chills, muscle aches, or a rash near the bite. These could be early signs of Lyme disease or other tick-borne illnesses like Rocky Mountain Spotted Fever or anaplasmosis."
+        window.onload = ()=>{
+            document.getElementById('uploadedImage').src = window.localStorage.getItem('img');
+            //document.getElementById('diagnosisResults').textContent = "This bite is most likely from a tick. It’s important to carefully remove any remaining parts of the tick to prevent further irritation or infection. After removal, clean the bite area with antiseptic and monitor your health over the coming days. Watch for symptoms such as fever, chills, muscle aches, or a rash near the bite. These could be early signs of Lyme disease or other tick-borne illnesses like Rocky Mountain Spotted Fever or anaplasmosis."
+            document.getElementById("result").textContent = "Your Uploaded Image: "+window.localStorage.getItem("type")+" bite"
+        }
     </script>
 
 

@@ -200,6 +200,7 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
                 const reader = new FileReader();
 
                 reader.onload = function(e) {
+                    window.localStorage.setItem('img',e.target.result)
                     console.log('File uploaded:', file.name); // You can add code here to display the uploaded image
                 };
 
