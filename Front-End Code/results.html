@@ -95,22 +95,35 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
                 </center>
             </div>
             <br>
+        </div>
+    </div>
+</section>
 
-            <!-- New flexbox container for text and image -->
-            <div class="d-flex align-items-center justify-content-between" style="display: flex; flex-direction: row; gap: 20px;">
+<section id="about" class="about section">
+    <div class="container">
+        <div class="row gy-4 gx-5">
+            <div class="col-lg-6 position-relative align-self-start aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="line-height:28px;">
+                <h2 style="">Your Uploaded Image: Tick Bite</h2>
+                <br>
+                <img  src="assets/img/tickPicture.jpg" class="img-fluid" alt="Tick Bite" style="border: 6px solid #0d4470; width: 90%; length=90%; border-radius: 10px;">
+            </div>
+            <div class="col-lg-6 content aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" style="line-height:30px;">
+                <h2 style="text-align:center; style="line-height:25px;"">Immediate Actions</h2>
+                <br>
+                <h4>Remove the tick</h4>
+                <p>If the tick is still attached, use fine-tipped tweezers to carefully pull the tick out without twisting or crushing it. Clean the bite area with soap and water.</p>
 
-                <!-- Left section with text -->
-                <div class="text-section" style="flex: 1;">
-                    <h2>Your uploaded image:</h2>
-                    <br>
-                    <p id="diagnosisResults">This bite is likely from a tick. Be sure to check for any remaining parts and watch for symptoms of Lyme disease.</p>
-                </div>
+                <h4>Monitor for symptoms</h4>
+                <p>Be vigilant for signs of infection or disease in the coming days.</p>
 
-                <!-- Right section with image -->
-                <div class="image-section" style="flex: 1; text-align: right;">
-                    <img id="uploadedImage" src="assets/img/ticksimage77.jpg" alt="Uploaded Bug Bite Image" style="max-width: 75%; height: auto;">
-                </div>
+                <h4>When to Seek Medical Advice</h4>
+                <p>If you experience any unusual symptoms such as fever, joint pain, fatigue, or a rash at the bite site, contact a healthcare provider promptly. Early treatment can prevent complications from tick-borne illnesses.</p>
 
+                <h4>Treatment Guidance</h4>
+                <p>For mild irritation, over-the-counter creams like hydrocortisone may help with redness or swelling. Antihistamines can relieve itching if necessary.</p>
+
+                <h4>Stay Informed</h4>
+                <p>To better understand the risks in your area, consult the interactive map below for tick species distribution and disease prevalence near you. Prevent future bites by using insect repellent and wearing long sleeves when in tick-prone environments.</p>
             </div>
         </div>
     </div>
@@ -123,7 +136,7 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
             <div data-aos="fade-up" data-aos-delay="100" class="aos-init aos-animate"><center><h2 style="line-height:1.6; font-size: 47px;">Your results show you got most likely got bit by a Tick!</h2></center></div>
             <br>
             <div class="col-lg-6 position-relative align-self-start aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="line-height:28px;">
-                <h3>What You Should Know About Tick Bites</h3>
+
 
                 <p>Discovering a tick bite can be alarming, especially with the risk of tick-borne diseases like Lyme disease, ehrlichiosis, and Rocky Mountain spotted fever. It’s important to act quickly and understand the type of tick that bit you. To help you identify the tick and assess potential risks, we’ve provided an interactive map displaying different tick species and the regions where they are commonly found.</p>
 
@@ -183,9 +196,6 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
         // Simulating processing the uploaded file
         document.getElementById('diagnosisResults').textContent = "This bite is most likely from a tick. It’s important to carefully remove any remaining parts of the tick to prevent further irritation or infection. After removal, clean the bite area with antiseptic and monitor your health over the coming days. Watch for symptoms such as fever, chills, muscle aches, or a rash near the bite. These could be early signs of Lyme disease or other tick-borne illnesses like Rocky Mountain Spotted Fever or anaplasmosis."
     </script>
-
-
-
 
 
 
