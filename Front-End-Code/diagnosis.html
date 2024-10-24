@@ -207,7 +207,19 @@ color-mix(in srgb, var(--accent-color), transparent 75%); padding: 7px;">
 
                 // Update the form's file input with the selected file
                 fileInput.files = files; // Set the form input files
-
+                
+                const formData = new FormData();
+                formData.append('image', file);
+                fetch('/classify', {
+                    method: "POST", 
+                    body: formData,
+                }).then((res)=>{
+                    if (res.status === 200) {
+                        const text = res.text().then((t)=>{window.localStorage.setItem("type",t)})
+                    } else {
+                        console.log('classify error')
+                    }
+                })
                 // Display the file name
                 fileNameDisplay.textContent = `Selected file: ${file.name}`;
             } else {
