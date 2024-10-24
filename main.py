@@ -9,10 +9,11 @@ app = Flask(__name__)
 
 @app.route('/<path:path>')
 def index(path):
-    if path == '':
-        return send_from_directory('./MAIN', "/index.html")
+    print("'",path,"'")
+    if path == None:
+        return send_from_directory('./Front-End-Code', "/index.html")
     else:
-        return send_from_directory('./MAIN', path)
+        return send_from_directory('./Front-End-Code', path)
 
 @app.route('/classify', methods=['POST'])
 def classify():
